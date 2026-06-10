@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createTask } from "../api/taskApi";
 
-function TaskForm() {
+function TaskForm({ onTaskCreated }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -18,6 +18,7 @@ function TaskForm() {
 
       setTitle("");
       setDescription("");
+      onTaskCreated();
     } catch (error) {
       console.error(error);
     }

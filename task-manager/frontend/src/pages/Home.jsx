@@ -1,13 +1,61 @@
+import { useEffect, useState } from "react";
 import TaskForm from "../components/TaskForm";
+import TaskList from "../components/TaskList";
+import { getTasks, deleteTask, updateTask } from "../api/taskApi";
 
 function Home() {
+  const [tasks, setTasks] = useState([]);
+
+  const fetchTasks = async () => {
+    try {
+      const data = await getTasks();
+      setTasks(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteTask(id);
+      fetchTasks();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleToggleStatus = async (task) => {
+  try {
+    const newStatus = task.status === "pending" ? "completed" : "pending";
+
+    await updateTask(task._id, {
+      status: newStatus,
+    });
+
+    fetchTasks();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+
   return (
+
     <div className="max-w-3xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">
         Task Manager
       </h1>
 
-      <TaskForm />
+      <TaskForm onTaskCreated={fetchTasks} />
+
+      <TaskList
+  tasks={tasks}
+  onDelete={handleDelete}
+  onToggleStatus={handleToggleStatus}
+/>
     </div>
   );
 }
