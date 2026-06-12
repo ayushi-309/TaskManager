@@ -7,8 +7,10 @@ export const createTask = async (taskData) => {
   return response.data;
 };
 
-export const getTasks = async (search = "") => {
-  const response = await axios.get(`${API_URL}?search=${search}`);
+export const getTasks = async (search = "", status = "") => {
+  const response = await axios.get(
+    `${API_URL}?search=${search}&status=${status}`
+  );
   return response.data;
 };
 
