@@ -9,12 +9,7 @@ function TaskForm({ onTaskCreated }) {
     e.preventDefault();
 
     try {
-      const newTask = await createTask({
-        title,
-        description,
-      });
-
-      console.log("Task Created:", newTask);
+      await createTask({ title, description });
 
       setTitle("");
       setDescription("");
@@ -25,30 +20,30 @@ function TaskForm({ onTaskCreated }) {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-4 mb-6">
-      <h2 className="text-xl font-semibold mb-4">
+    <div className="bg-white rounded-xl shadow-sm border p-6 mb-6">
+      <h2 className="text-xl font-semibold text-slate-800 mb-4">
         Add New Task
       </h2>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
-          placeholder="Enter task title"
+          placeholder="Task title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full border p-2 rounded mb-3"
+          className="w-full border border-slate-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
         <textarea
-          placeholder="Enter task description"
+          placeholder="Task description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="w-full border p-2 rounded mb-3"
+          className="w-full border border-slate-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
         <button
           type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded"
+          className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700"
         >
           Add Task
         </button>
