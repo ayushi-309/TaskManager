@@ -14,6 +14,9 @@ The application provides an easy way to organize daily tasks, update their statu
 
 ## ✨ Features
 
+* 🔐 User Authentication (Sign In & Sign Up with JWT and secure password hashing)
+* 🎨 Modern Glassmorphism UI with Tailwind CSS v4 & responsive design
+* 📊 Interactive password strength meter & real-time validation
 * ➕ Create new tasks
 * 📋 View all tasks
 * ✏️ Edit and update tasks
@@ -22,8 +25,8 @@ The application provides an easy way to organize daily tasks, update their statu
 * 🔍 Search tasks
 * 🎯 Filter tasks by status
 * ⏳ Loading state handling
-* 📱 Responsive user interface
-* 🔗 RESTful API integration
+* 📱 Fully responsive user interface
+* 🔗 RESTful API integration with local preview fallback
 * 🗄️ MongoDB database integration
 * ⚡ Automatic task list updates
 
@@ -156,6 +159,16 @@ npm run dev
 The frontend will run on the local Vite development URL shown in your terminal.
 
 ## 🔌 API Endpoints
+
+### 🔐 Authentication
+
+| Method | Endpoint             | Description                         | Access  |
+| ------ | -------------------- | ----------------------------------- | ------- |
+| POST   | `/api/auth/register` | Register a new user                 | Public  |
+| POST   | `/api/auth/login`    | Log in user and return JWT token    | Public  |
+| GET    | `/api/auth/me`       | Get authenticated user profile      | Private |
+
+### 📋 Tasks
 
 | Method | Endpoint         | Description       |
 | ------ | ---------------- | ----------------- |
